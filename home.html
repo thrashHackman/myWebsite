@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tahraun's Website</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename='css/homestyles.css') }}" rel="stylesheet">
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand">Anything Worth Doing is Worth Overdoing.</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#why">Why</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">Welcome to Tahraun's Journey!</h1>
+                <p class="lead">Tahraun <b>(me)</b> is a transitioning Active-Duty member of our U.S. Air Force, an aspiring Systems Engineer,
+                    part-time Software Engineer, Ironman Super Fan <b>(kinda)</b>, The Last of Us Mega Fan <b>(absolutely)</b>, Raspberry Pi enthusiast, 
+                    avid traveler, and most importantly a husband and father.
+                </p>
+                <a class="btn btn-lg btn-light" a href="/resume", target="_blank">Tahraun's CV</a>
+            </div>
+        </header>
+        <!-- About section-->
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>ABOUT THIS PAGE...
+                            <br><span style="font-size: 0.7em;">(AKA “How I’m Surviving the Shift from Boots to a pair of Nike P-6000's 
+                            <br>(my version of a professional shoe I plan on wearing with a $9,000 Breitling))</span></h2>
+                            <br><p class="lead">Welcome to a page that chronicles the most thrilling (and occasionally terrifying) experience of my life: 
+                            transitioning out of the military. It’s a ride filled with reflection, preparation, and the occasional "what am I doing?" moment. 
+                            <br><br>I created this section to help fellow veterans navigate their own transition with fewer head-scratching moments and more clarity. 
+                            <br><br>Spoiler alert: the world outside doesn’t run on chow hall schedules or PT formations.
+                            <br><br>So, strap in and enjoy the breakdown of how I’m making this shift—complete with resources, real talk, and some tips I wish someone had tattooed on my forehead earlier.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Why section-->
+        <section class="bg-light" id="why">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>WHY? OPERATION DD-214...</h2>
+                        <p class="lead">Let’s be honest—transitioning is overwhelming.
+                            <br><br>Sure, we’ve faced pressure before 
+                            (deployments, promotions, etc), but entering civilian life comes with a different flavor of anxiety: 
+                            building resumes, networking, interviews, etc.
+                            <br><br>Instead, you’re left navigating an endless sea of LinkedIn posts about networking, 
+                            certifications, and “following your passion.”
+                            <br><br>This page is my way of showing that you don’t have to do it alone. 
+                            <br><br>It’s my AAR (After Action Report)—but without the jargon (okay, maybe a little).
+                            <br><br>1... 6... show line 214 clear... maintenance action, hard reset
+                            <br><br>GREEEEEEEEEEEEEN EAGLEEEEEEEE!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section id="services">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Services</h2>
+                        <p class="lead">These are the key services that helped me stay sane (and somewhat confident) during my transition.
+                            Think of them as my trusted team—each one played a specific role in helping me move from military life to the civilian world with a bit more ease.</p>
+                            <ul>
+                                <li><a href="https://www.acp-usa.org/", target="_blank"><b>American Corporate Partners (ACP)</b></a> is a nationwide nonprofit dedicated to helping military 
+                                    service members and veterans successfully transition into civilian careers through personalized, one-on-one mentorship. ACP connects veterans with 
+                                    experienced professionals from Fortune 500 companies, top organizations, and various industries to provide career guidance, resume building, networking 
+                                    advice, and job search strategies.</li>
+                                    <b>What sets ACP apart:</b>
+                                    <ul>
+                                        <li><b>Free, Customized Mentorship:</b> Veterans are paired with mentors tailored to their career goals, creating personalized guidance over a 12-month period.</li>
+                                        <li><b>Industry Expertise:</b> Mentors come from diverse fields, including IT, engineering, finance, and project management, offering insider knowledge.</li>
+                                        <li><b>Proven Success:</b> Many veterans attribute job offers and promotions to the connections and advice gained through ACP.</li>
+                                    </ul>
+                                <br><li><a href="https://fourblock.org/", target="_blank"><b>FourBlock</b></a> is a nonprofit organization designed to bridge the gap between returning veterans and successful 
+                                    civilian careers through a unique, hands-on approach. Its programs combine classroom instruction, mentoring, and networking events to help veterans gain valuable career
+                                     insights and build long-term professional networks.</li>
+                                    <b>What sets FourBlock apart:</b>
+                                    <ul>
+                                        <li><b>Structured, Semester-Based Program:</b> Designed to build career readiness by guiding veterans through resume building, networking, and job preparation.</li>
+                                        <li><b>Partnerships with Top Employers:</b> Veterans gain access to professionals from leading organizations who provide real-world advice and connections.</li>
+                                        <li><b>Career Exploration and Development:</b> Offers workshops and events that help veterans explore various industries while developing the necessary professional skills.</li>
+                                    </ul>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section class="bg-light" id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Contact Me</h2>
+                        <p class="lead">I get it—reaching out can feel awkward, but consider this an open invitation to connect!
+                            <br>Whether you’re a fellow veteran navigating the transition, a recruiter looking to chat, or someone curious about my journey, I’m happy to hear from you.
+                        <br><br>Please do not be weird about it.</p>
+                            <ul>
+                                <b>Ways to reach me:</b>
+                            <ul>
+                                <b>Email:</b> <a href="mailto:name@email.com">tahraun@gmail.com</a> 
+                            </ul>
+                            <ul>
+                                <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/tahraunsibley/", target="_blank">Tahraun Sibley</a> 
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Tahraun T. Sibley 2025</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename='js/homescripts.js') }}"></script>
+
+    </body>
+</html>
