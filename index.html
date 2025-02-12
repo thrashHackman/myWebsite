@@ -248,28 +248,49 @@
         <!-- Core theme JS-->
         <script src="static/js/indexscripts.js"></script>
 
-        <script>
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "firebase/app";
-            import { getAnalytics } from "firebase/analytics";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
+        <!-- Firebase Script -->
+    <script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-            apiKey: "AIzaSyBqxrTT6VpU_XRK1hQP5ThpvYDdSYjNw7k",
-            authDomain: "tahraun-com.firebaseapp.com",
-            projectId: "tahraun-com",
-            storageBucket: "tahraun-com.firebasestorage.app",
-            messagingSenderId: "81904090578",
-            appId: "1:81904090578:web:8f12ceaf1b369e2144dc0b",
-            measurementId: "G-4BLTZED33Q"
-            };
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBqxrTT6VpU_XRK1hQP5ThpvYDdSYjNw7k",
+        authDomain: "tahraun-com.firebaseapp.com",
+        projectId: "tahraun-com",
+        storageBucket: "tahraun-com.firebasestorage.app",
+        messagingSenderId: "81904090578",
+        appId: "1:81904090578:web:8f12ceaf1b369e2144dc0b",
+        measurementId: "G-4BLTZED33Q"
+    };
 
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-        </script>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Function to store email
+    async function addEmailToDatabase() {
+        const emailInput = document.getElementById("emailInput").value.trim();
+        
+        if (emailInput === "") {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "subscribers"), { email: emailInput });
+            alert("Thank you for subscribing!");
+            document.getElementById("emailInput").value = ""; // Clear input after submission
+        } catch (error) {
+            console.error("Error adding email: ", error);
+            alert("Something went wrong. Please try again.");
+        }
+    }
+
+    // Event Listener for Button Click
+    document.getElementById("emailButton").addEventListener("click", addEmailToDatabase);
+</script>
+
     </body>
 </html>
