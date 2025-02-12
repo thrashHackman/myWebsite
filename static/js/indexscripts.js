@@ -6,6 +6,6 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
-$('.popover-dismiss').popover({
-    trigger: 'focus'
-  })
+document.addEventListener("DOMContentLoaded", function() {
+    var popoverTrigger = new bootstrap.Popover(document.getElementById('popover-btn'));
+});
