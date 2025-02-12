@@ -6,12 +6,24 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
-document.addEventListener("DOMContentLoaded", function() {
-    var popoverTrigger = new bootstrap.Popover(document.getElementById('popover-btn'));
-});
+// Wait until the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all elements with data-bs-toggle="popover"
+    var popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 
-$(function () {
-    $('.example-popover').popover({
-      container: 'body'
-    })
-  })
+    // Initialize each popover
+    var popoverList = [...popoverTriggerList].map(popoverTriggerEl => {
+        return new bootstrap.Popover(popoverTriggerEl, {
+            container: 'body' // Ensures popovers don’t break layout
+        });
+    });
+
+    // Optional: Close popovers when clicking outside
+    document.addEventListener("click", function (event) {
+        popoverList.forEach(popover => {
+            if (!popover._element.contains(event.target)) {
+                popover.hide();
+            }
+        });
+    });
+});
