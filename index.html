@@ -287,14 +287,23 @@
                     if (!docSnap.exists()) {
                         // Create the document with the first email if it doesn't exist
                         await setDoc(subscribersDocRef, { emails: [emailInput] });
+                        alert("Thank you for subscribing!");
                     } else {
-                        // Add the email to the existing array
+                        // Check if the email already exists in the emails array
+                        const existingEmails = docSnap.data().emails || [];
+                        
+                        if (existingEmails.includes(emailInput)) {
+                            alert("This email address is already subscribed. Please use a different email.");
+                            return;
+                        }
+                        
+                        // Add the email to the existing array if it's not a duplicate
                         await updateDoc(subscribersDocRef, {
                             emails: arrayUnion(emailInput)
                         });
+                        alert("Thank you for subscribing!");
                     }
         
-                    alert("Thank you for subscribing!");
                     document.getElementById("emailInput").value = ""; // Clear input after submission
                 } catch (error) {
                     console.error("Error adding email: ", error);
@@ -305,6 +314,7 @@
             // Event Listener for Button Click
             document.getElementById("emailButton").addEventListener("click", addEmailToDatabase);
         </script>
+        
         
 
     </body>
