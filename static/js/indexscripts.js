@@ -9,3 +9,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     var popoverTrigger = new bootstrap.Popover(document.getElementById('popover-btn'));
 });
+
+$(function () {
+    $('.example-popover').popover({
+      container: 'body'
+    })
+  })
