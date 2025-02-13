@@ -252,8 +252,8 @@
         <script type="module">
             // Import Firebase SDK
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-            import { getFirestore, doc, updateDoc, arrayUnion, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        
+            import { getFirestore, doc, updateDoc, arrayUnion, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
             // Your Firebase configuration
             const firebaseConfig = {
                 apiKey: "AIzaSyBqxrTT6VpU_XRK1hQP5ThpvYDdSYjNw7k",
@@ -264,58 +264,74 @@
                 appId: "1:81904090578:web:8f12ceaf1b369e2144dc0b",
                 measurementId: "G-4BLTZED33Q"
             };
-        
+
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
-        
+
             // Reference to the single document in Firestore
             const subscribersDocRef = doc(db, "subscribers", "newsletterSubscribers");
-        
+
             async function addEmailToDatabase() {
-                const emailInput = document.getElementById("emailInput").value.trim();
-        
-                if (emailInput === "") {
-                    alert("Please enter a valid email address.");
+                const emailInput = document.getElementById("emailInput").value.trim().toLowerCase();
+
+                // ✅ Step 1: Validate Email Format
+                if (!validateEmail(emailInput)) {
+                    alert("Invalid email format. Please enter a valid email.");
                     return;
                 }
-        
+
                 try {
-                    // Check if the document exists
+                    // ✅ Step 2: Check if the document exists
                     const docSnap = await getDoc(subscribersDocRef);
-        
+
                     if (!docSnap.exists()) {
-                        // Create the document with the first email if it doesn't exist
-                        await setDoc(subscribersDocRef, { emails: [emailInput] });
+                        // ✅ Create the document if it doesn’t exist
+                        await setDoc(subscribersDocRef, { emails: [emailInput], timestamps: [serverTimestamp()] });
                         alert("Thank you for subscribing!");
                     } else {
-                        // Check if the email already exists in the emails array
-                        const existingEmails = docSnap.data().emails || [];
-                        
+                        const existingData = docSnap.data();
+                        const existingEmails = existingData.emails || [];
+                        const timestamps = existingData.timestamps || [];
+
+                        // ✅ Step 3: Prevent Duplicate Emails
                         if (existingEmails.includes(emailInput)) {
-                            alert("This email address is already subscribed. Please use a different email.");
+                            alert("This email is already subscribed.");
                             return;
                         }
-                        
-                        // Add the email to the existing array if it's not a duplicate
+
+                        // ✅ Step 4: Rate Limiting - Prevent Spam (1 min cooldown)
+                        const lastSignup = timestamps.length > 0 ? timestamps[timestamps.length - 1].toDate() : null;
+                        if (lastSignup && (new Date() - lastSignup) < 60000) {
+                            alert("Please wait a minute before signing up again.");
+                            return;
+                        }
+
+                        // ✅ Step 5: Add the email to the array
                         await updateDoc(subscribersDocRef, {
-                            emails: arrayUnion(emailInput)
+                            emails: arrayUnion(emailInput),
+                            timestamps: arrayUnion(serverTimestamp()) // Store timestamp for rate-limiting
                         });
+
                         alert("Thank you for subscribing!");
                     }
-        
-                    document.getElementById("emailInput").value = ""; // Clear input after submission
+
+                    // ✅ Step 6: Clear input after submission
+                    document.getElementById("emailInput").value = "";
                 } catch (error) {
-                    console.error("Error adding email: ", error);
+                    console.error("Error adding email:", error);
                     alert("Something went wrong. Please try again.");
                 }
             }
-        
-            // Event Listener for Button Click
+
+            // ✅ Helper Function: Validate Email Format
+            function validateEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+
+            // ✅ Event Listener for Button Click
             document.getElementById("emailButton").addEventListener("click", addEmailToDatabase);
         </script>
-        
-        
-
     </body>
 </html>
